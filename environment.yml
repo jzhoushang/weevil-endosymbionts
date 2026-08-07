@@ -4,9 +4,20 @@ channels:
     - bioconda
     - defaults
 dependencies:
-    - python=3.11
+    - python=3.12
     - entrez-direct
     - sra-tools
+    - ncbi-datasets-cli
+    - pigz
+    - fastp
+    - bowtie2
+    - samtools
+    - megahit
+    - metabat2
+    - das_tool
+    - checkm2
+    - gtdbtk
+    - dram
     - jupyter
     - numpy
     - pandas
