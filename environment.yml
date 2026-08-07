@@ -1,0 +1,12 @@
+name: weevil-endosymbionts
+channels:
+    - conda-forge
+    - bioconda
+    - defaults
+dependencies:
+    - python=3.11
+    - entrez-direct
+    - sra-tools
+    - jupyter
+    - numpy
+    - pandas
