@@ -1,0 +1,9 @@
+channels:
+    - conda-forge
+    - bioconda
+dependencies:
+    - entrez-direct
+    - ncbi-datasets-cli
+    - sra-tools
+    - pigz
+    - fastp

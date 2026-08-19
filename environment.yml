@@ -2,9 +2,9 @@ name: weevil-endosymbionts
 channels:
     - conda-forge
     - bioconda
-    - defaults
 dependencies:
     - python=3.12
+    - snakemake
     - entrez-direct
     - sra-tools
     - ncbi-datasets-cli
@@ -14,10 +14,13 @@ dependencies:
     - samtools
     - megahit
     - metabat2
+    - maxbin2
+    - semibin
     - das_tool
     - checkm2
     - gtdbtk
     - dram
+    - pyyaml
     - jupyter
     - numpy
     - pandas

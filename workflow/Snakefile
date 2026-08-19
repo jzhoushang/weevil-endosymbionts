@@ -1,0 +1,31 @@
+configfile: "config/config.yml"
+
+threads_count = 16
+min_contig_length = 1500
+cpu_limit = 0.8
+
+subjects = config["subjects"]
+subjects_fn = [s.replace(' ', '_') for s in subjects]
+
+indexed_subjects = config["indexed_subjects"]
+indexed_subjects_fn = [s.replace(' ', '_') for s in subjects]
+
+host_db_dir = "data/host_db"
+host_db_name = "weevil_idx"
+
+wildcard_constraints:
+    acc=r"[SDE]RR[0-9]*(\.[0-9]*)?",
+    subject=r"[A-Z][a-z]*[ _][a-z]*"
+
+rule all:
+    input:
+        metadata = "data/accessions/sra_metadata.csv",
+        host_index = host_db_dir,
+        checkm2 = expand("reports/checkm2/{s}", s=subjects_fn)
+
+include: "rules/search_accessions.smk"
+include: "rules/index.smk"
+include: "rules/accessions.smk"
+include: "rules/contigs.smk"
+include: "rules/bins.smk"
+include: "rules/checkm2.smk"

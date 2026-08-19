@@ -1,0 +1,8 @@
+channels:
+    - conda-forge
+    - bioconda
+dependencies:
+    - metabat2
+    - maxbin2
+    - semibin
+    - das_tool

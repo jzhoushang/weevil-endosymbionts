@@ -1,0 +1,7 @@
+channels:
+    - conda-forge
+    - bioconda
+dependencies:
+    - ncbi-datasets-cli
+    - bowtie2
+    - pigz

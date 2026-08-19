@@ -1,9 +1,14 @@
 #!/bin/bash
 
-set -xe
+THREADS=8
+HOST_GENOME_LOCATION="data/host_genomes"
+HOST_DB_LOCATION="data/host_db"
 
-cat data/host_genomes/*.fna.gz > data/host_genomes/all_weevil_host.fna.gz
+echo "Aggregating host genomes"
+cat "$HOST_GENOME_LOCATION/*.fna.gz" > "$HOST_GENOME_LOCATION/all_weevil_host.fna.gz"
 
-bowtie2-build --bmax 100000000 data/host_genomes/all_weevil_host.fna.gz data/host_db/weevil_idx
+echo "Building index"
+bowtie2-build -p "$THREADS" "$HOST_GENOME_LOCATION/all_weevil_host.fna.gz" "$HOST_DB_LOCATION/weevil_idx"
 
-rm -rf data/host_genomes/
+echo "Cleaning up"
+rm -rf "$HOST_GENOME_LOCATION"

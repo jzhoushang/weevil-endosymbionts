@@ -1,5 +1,8 @@
 .ipynb_checkpoints/
+__pycache__/
 
 data/
+temp/
+reports/
 
-src/__pycache__/
+.snakemake/
