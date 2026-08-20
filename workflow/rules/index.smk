@@ -3,7 +3,7 @@ rule build_index:
         dir = directory(host_db_dir)
     input:
         "temp/all.fna.gz"
-    threads: threads_count
+    threads: workflow.cores
     params:
         index = lambda wildcards, output: f"{output.dir}/{host_db_name}"
     conda: "../envs/index.yml"
@@ -57,7 +57,7 @@ rule recompress_host_genome:
         temp("temp/{subject}.fna.gz")
     input:
         "temp/{subject}.fna"
-    threads: threads_count
+    threads: workflow.cores
     conda: "../envs/index.yml"
     shell:
         """

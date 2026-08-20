@@ -16,7 +16,7 @@ rule bins_metabat2:
     input:
         contigs = "temp/{subject}_filtered.fa",
         depth_table = "temp/{subject}_depth.txt"
-    threads: threads_count
+    threads: workflow.cores
     params:
         min = min_contig_length
     conda: "../envs/bins.yml"
@@ -39,7 +39,7 @@ rule bins_maxbin2:
         depth_table = "temp/{subject}_depth.txt"
     params:
         min = min_contig_length
-    threads: threads_count
+    threads: workflow.cores
     conda: "../envs/bins.yml"
     shell:
         """
@@ -61,7 +61,7 @@ rule bins_semibin2:
     params:
         min_length = min_contig_length,
         min_lower_length = min_contig_length - 500
-    threads: threads_count
+    threads: workflow.cores
     conda: "../envs/bins.yml"
     shell:
         """
@@ -83,7 +83,7 @@ rule bins_semibin2:
 
 rule das_tool:
     output:
-        bins = directory("data/bins/{subject}"),
+        bins = directory("temp/{subject}_bins"),
         metabat2_data = temp("temp/{subject}_metabat2.tsv"),
         maxbin2_data = temp("temp/{subject}_maxbin2.tsv"),
         semibin2_data = temp("temp/{subject}_semibin2.tsv")
@@ -92,7 +92,7 @@ rule das_tool:
         metabat2_dir = "temp/{subject}_metabat2",
         maxbin2_dir = "temp/{subject}_maxbin2",
         semibin2_dir = "temp/{subject}_semibin2"
-    threads: threads_count
+    threads: workflow.cores
     conda: "../envs/bins.yml"
     shell:
         """

@@ -40,10 +40,15 @@ def run_esearch(species_name: str) -> pd.DataFrame:
     
     return df
 
-df = run_esearch(snakemake.params.sub)
-df_sorted = df.sort_values(by="size_MB", ascending=False).head(3)
+os.makedirs(snakemake.output.accs, exist_ok=True)
+with open(snakemake.output.metadata, "w") as f:
+    f.write("Run,size_MB,Experiment,SRAStudy,ScientificName\n")
 
-with open(snakemake.output.accs, "w") as f:
-    f.write("\n".join(df_sorted["Run"].values.tolist()))
+for subject in snakemake.params.subs:
+    df = run_esearch(subject.replace('_', ' '))
+    df_sorted = df.sort_values(by="size_MB", ascending=False).head(3)
 
-df_sorted.to_csv(snakemake.output.metadata, index=False)
+    with open(f"{snakemake.output.accs}/{subject}.txt", "w") as f:
+        f.write("\n".join(df_sorted["Run"].values.tolist()))
+
+    df_sorted.to_csv(snakemake.output.metadata, mode="a", index=False, header=False)

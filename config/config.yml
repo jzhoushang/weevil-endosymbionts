@@ -1,5 +1,18 @@
 subjects:
+    - Sitophilus granarius
+    - Sitophilus oryzae
+    - Sitophilus zeamais
+    - Dendroctonus ponderosae
+    - Dendroctonus valens
+    - Ips typographus
+    - Orthorhinus cylindrirostris
+    - Xyleborus affinis
+    - Anthonomus grandis
+    - Elaeidobius kamerunicus
     - Curculio glandium
+    - Hypothenemus hampei
+    - Diaprepes abbreviatus
+    - Rhynchophorus ferrugineus
 indexed_subjects:
     - Anthonomus grandis
     - Dendroctonus ponderosae

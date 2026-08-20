@@ -1,12 +1,12 @@
 def get_cleaned_r1(wildcards):
-    accs = checkpoints.search_accessions.get(**wildcards).output["accs"]
-    with open(accs) as f:
+    accs = checkpoints.search_accessions.get().output["accs"]
+    with open(f"{accs}/{wildcards.subject}.txt") as f:
         accessions = [line.strip() for line in f if line.strip()]
     return expand("temp/{acc}_1_cleaned.fastq.gz", acc=accessions)
 
 def get_cleaned_r2(wildcards):
     accs = checkpoints.search_accessions.get(**wildcards).output["accs"]
-    with open(accs) as f:
+    with open(f"{accs}/{wildcards.subject}.txt") as f:
         accessions = [line.strip() for line in f if line.strip()]
     return expand("temp/{acc}_2_cleaned.fastq.gz", acc=accessions)
 
@@ -18,10 +18,11 @@ rule decontaminate_host_reads:
     output:
         r1 = temp("temp/{acc}_1_cleaned.fastq.gz"),
         r2 = temp("temp/{acc}_2_cleaned.fastq.gz")
-    threads: threads_count
+    threads: workflow.cores
     params:
         index = lambda wildcards, input: f"{input.index_dir}/{host_db_name}"
     conda: "../envs/contigs.yml"
+    priority: 100
     shell:
         """
         bowtie2 -x '{params.index}' \
@@ -58,7 +59,7 @@ rule generate_contigs:
     input:
         r1 = "data/cleaned/{subject}_1.fastq.gz",
         r2 = "data/cleaned/{subject}_2.fastq.gz"
-    threads: threads_count
+    threads: workflow.cores
     conda: "../envs/contigs.yml"
     shell:
         """
@@ -106,7 +107,7 @@ rule map_cleaned_reads_to_contigs:
         r2 = "data/cleaned/{subject}_2.fastq.gz"
     params:
         index = lambda wildcards, input: f"{input.contig_index_dir}/index"
-    threads: threads_count
+    threads: workflow.cores
     conda: "../envs/contigs.yml"
     shell:
         """
