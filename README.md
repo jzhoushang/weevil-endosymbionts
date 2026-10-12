@@ -1,12 +1,14 @@
-# In silico identification and metabolic modeling of novel endosymbionts across diverse niches in weevils (Coleoptera: Curculionidae)
+# Metagenome-Assembled Genome (MAG) Isolation Pipeline
 
-Computational decontamination pipeline for identification and analysis of endosymbionts from whole-genome sequencing reads.
+Computational decontamination pipeline for the isolation of MAGs from publically available shotgun reads.
 
 ## Pipeline
 
 ### Pre-requisites and Environment
 
-It's recommended to have at least 512 GB of storage and 256 GB of memory.
+This pipeline was run on an Ubuntu virtual machine with 24 GB of RAM and 400 GB of storage and able to process relatively small datasets in a few days. It's recommended to use a more powerful machine for any real use cases.
+
+GTDB-Tk and DRAM were run after the pipeline completed via KBase.
 
 ### Species
 
