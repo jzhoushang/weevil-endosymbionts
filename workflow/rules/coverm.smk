@@ -13,7 +13,7 @@ rule run_coverm:
         
         coverm genome \
             --genome-fasta-files '{input.bins}/'*'.fa' \
-            --couples '{input.r1}' '{input.r2}' \
-            --out-raw-counts '{output}/coverage_summary.tsv' \
+            --coupled '{input.r1}' '{input.r2}' \
+            -o '{output}/coverage_summary.tsv' \
             --threads '{threads}'
         """

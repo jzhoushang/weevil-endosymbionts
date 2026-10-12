@@ -21,9 +21,7 @@ rule all:
     input:
         metadata = "data/accessions/sra_metadata.csv",
         host_index = host_db_dir,
-        gtdbtk = expand("reports/gtdbtk/{s}", s=subjects_fn),
-        dram_annos = expand("reports/dram/annotations/{s}", s=subjects_fn),
-        dram_dists = expand("reports/dram/distillations/{s}", s=subjects_fn),
+        bins = expand("data/bins/{s}", s=subjects_fn),
         coverm = expand("reports/coverm/{s}", s=subjects_fn)
 
 include: "rules/search_accessions.smk"
@@ -32,6 +30,4 @@ include: "rules/accessions.smk"
 include: "rules/contigs.smk"
 include: "rules/bins.smk"
 include: "rules/checkm2.smk"
-include: "rules/gtdbtk.smk"
-include: "rules/dram.smk"
 include: "rules/coverm.smk"
