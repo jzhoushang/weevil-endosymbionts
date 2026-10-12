@@ -6,4 +6,11 @@ databases/
 temp/
 reports/
 
+config/config.yml.full
+
 .snakemake/
+
+workflow/rules/gtdbtk.smk
+workflow/rules/dram.smk
+workflow/envs/gtdbtk.yml
+workflow/envs/dram.yml
