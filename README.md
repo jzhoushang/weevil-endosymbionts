@@ -1,6 +1,6 @@
 # Metagenome-Assembled Genome (MAG) Isolation Pipeline
 
-Computational decontamination pipeline for the isolation of MAGs from publically available shotgun reads.
+Computational decontamination pipeline for the isolation of MAGs from publicly available shotgun reads. This project was originally intended to identify endosymbionts in weevils.
 
 ## Pipeline
 
@@ -10,30 +10,21 @@ This pipeline was run on an Ubuntu virtual machine with 24 GB of RAM and 400 GB 
 
 GTDB-Tk and DRAM were run after the pipeline completed via KBase.
 
-### Species
+### Tools
 
-This pipeline analyzes the following species:
+This pipeline uses the following tools:
 
-- Curculionidae (True weevils), grouped by diet
-    - Stored grain (_Sitophilus_ spp.)
-        - _S. granarius_ (grain weevil)
-        - _S. oryzae_ (rice weevil)
-        - _S. zeamais_ (maize weevil)
-    - Cambiun and wood
-        - _Dendroctonus ponderosae_ (mountain pine beetle)
-        - _Dendroctonus valens_ (red turpentine beetle)
-        - _Ips typographus_ (Eurasian spruce bark beetle)
-        - _Orthorhinus cylindrirostris_ (elephant weevil)
-        - _Xyleborus affinis_ (sugarcane shot-hole borer)
-    - Plant reproductive organs
-        - _Anthonomus grandis_ (boll weevil)
-        - _Elaeidobius kamerunicus_ (African oil palm weevil)
-    - Fruits, seeds, and nuts
-        - _Curculio glandium_ (acorn weevil)
-        - _Hypothenemus hampei_ (coffee berry borer)
-    - Vascular and structural tissue
-        - _Diaprepes abbreviatus_ (citrus root weevil)
-        - _Rhynchophorus ferrugineus_ (red palm weevil)
-- Other insects
-    - _Tribolium castaneum_ (red flour beetle)
-    - _Acyrthosiphon pisum_ (pea aphid)
+- [NCBI ESearch](https://dataguide.nlm.nih.gov/edirect/esearch.html), part of the NCBI E-Utilities
+- [NCBI SRA Toolkit](https://github.com/ncbi/sra-tools) to download shotgun reads
+- [NCBI Datasets](https://github.com/ncbi/datasets) to download genomes
+- [fastp](https://github.com/opengene/fastp) for preprocessing and quality filtering
+- [Bowtie 2](https://github.com/benlangmead/bowtie2) for read alignment
+- [MEGAHIT](https://github.com/voutcn/MEGAHIT) for forming contigs
+- [MetaBAT 2](https://pmc.ncbi.nlm.nih.gov/articles/PMC6662567/) for bins
+- [MaxBin 2](https://academic.oup.com/bioinformatics/article/32/4/605/1744462) for bins
+- [SemiBin2](https://academic.oup.com/bioinformatics/article/39/Supplement_1/i21/7210480) for bins
+- [DAS Tool](https://github.com/cmks/DAS_Tool) to merge bins
+- [CheckM2](https://github.com/chklovski/CheckM2) for quality assessment
+- [CoverM](https://github.com/wwood/CoverM) to calculate coverage
+
+As well as utilities like [SeqKit](https://github.com/shenwei356/seqkit), [pigz](https://github.com/madler/pigz), and [samtools](https://github.com/samtools/samtools).
